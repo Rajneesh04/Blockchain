@@ -117,7 +117,7 @@ def getMerkleRoot(transactions):
     treeLayer = previousTreeLayer
     while count > 1 :
         treeLayer = []
-        for i in range(1,len(previousTreeLayer)):
+        for i in range(1,len(previousTreeLayer),2):
             treeLayer.append(SHA256(str(previousTreeLayer[i-1])+str(previousTreeLayer[i])))
         count = len(treeLayer)
         previousTreeLayer = treeLayer
@@ -244,6 +244,8 @@ class Blockchain:
         print("WalletA's balance is : " + str(WalletA.getBalance()))
         print("WalletB's balance is : " + str(WalletB.getBalance()))
         b1.addTransaction(WalletA.sendFunds(WalletB.publicKey,10))
+        b1.addTransaction(WalletB.sendFunds(WalletA.publicKey,1))
+        b1.addTransaction(WalletB.sendFunds(WalletA.publicKey,5))
         print("WalletA's balance is : " + str(WalletA.getBalance()))
         print("WalletB's balance is : " + str(WalletB.getBalance()))
         self.addBlock(b1)
