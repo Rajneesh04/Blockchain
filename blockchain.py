@@ -3,7 +3,11 @@ from Crypto.Signature import DSS
 import Crypto.Hash
 from hashlib import sha256
 import time
+<<<<<<< HEAD
+#from Crypto.PublicKey import ECC
+=======
 from Crypto.PublicKey import ECC
+>>>>>>> 6f9629b202a9b3f08576313c6165cd8e930ece96
 MAX_NONCE = 1000000000
 
 def SHA256(text):
@@ -35,7 +39,11 @@ class Block:
         self.timeStamp = str(time.time())
         self.Hash=""
         self.nonce=0
+<<<<<<< HEAD
+        self.merkleRoot=""
+=======
         self.markleRoot=""
+>>>>>>> 6f9629b202a9b3f08576313c6165cd8e930ece96
         self.transactions = []
         #self.calculateHash()
     
@@ -80,7 +88,11 @@ class Wallet():
         self.UTXOs = {}
 
     def getBalance(self):
+<<<<<<< HEAD
+        total = 0
+=======
         total = 0;
+>>>>>>> 6f9629b202a9b3f08576313c6165cd8e930ece96
         for i in Blockchain.UTXOs.values() :
             UTXO = i
             if (UTXO.isMine(self.publicKey)) :
@@ -204,25 +216,39 @@ class TransactionOutput():
     def isMine(self,publicKey):
         return self.reciepient==publicKey
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 6f9629b202a9b3f08576313c6165cd8e930ece96
 class TransactionInput():
     def __init__(self,transactionId):
         self.transactionOutputId=transactionId
         self.UTXO = None
     
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 6f9629b202a9b3f08576313c6165cd8e930ece96
 class Blockchain:
     blockchain = []
     UTXOs = {}
     minimumTransaction = float(0.1)
+<<<<<<< HEAD
+    difficulty = 5
+    def __init__(self, wallet):
+        coinbase = Wallet()
+        WalletA = wallet
+        #WalletB = Wallet()
+=======
     difficulty = 4;
     def __init__(self):
 
         coinbase = Wallet()
         WalletA = Wallet()
         WalletB = Wallet()
+>>>>>>> 6f9629b202a9b3f08576313c6165cd8e930ece96
 
         self.genesisTransaction = Transaction(coinbase.publicKey,WalletA.publicKey,100,0)
         self.genesisTransaction.sign(coinbase.privateKey)
@@ -235,6 +261,8 @@ class Blockchain:
         genesis.addTransaction(self.genesisTransaction)
         self.addBlock(genesis)
 
+<<<<<<< HEAD
+=======
         b1 = Block(genesis.Hash)
         print("WalletA's balance is : " + str(WalletA.getBalance()))
         #b1.addTransaction(WalletA.sendFunds(WalletB.publicKey,10))
@@ -263,6 +291,7 @@ class Blockchain:
         self.isChainValid()
 
 
+>>>>>>> 6f9629b202a9b3f08576313c6165cd8e930ece96
 #        self.difficulty = 4
 #        #self.blockchain = []
 #        for i in range(1):
@@ -288,15 +317,25 @@ class Blockchain:
 
 
     def isChainValid(self):
+<<<<<<< HEAD
+        currentBlock = self.blockchain[0]
+        previousBlock = self.blockchain[0]
+=======
         currentBlock = Blockchain.blockchain[0]
         previousBlock = Blockchain.blockchain[0]
+>>>>>>> 6f9629b202a9b3f08576313c6165cd8e930ece96
         prefixStr = self.difficulty*'0'
         tempUTXOs = {}
         tempUTXOs[self.genesisTransaction.outputs[0].id] = self.genesisTransaction.outputs[0]
 
         for i in range(1,len(self.blockchain)):
+<<<<<<< HEAD
+            currentBlock = self.blockchain[i]
+            previousBlock = self.blockchain[i-1]
+=======
             currentBlock = Blockchain.blockchain[i]
             previousBlock = Blockchain.blockchain[i-1]
+>>>>>>> 6f9629b202a9b3f08576313c6165cd8e930ece96
             #print(currentBlock.Hash)
             #print(currentBlock.calculateHash())
             #print(currentBlock.Hash)
@@ -351,8 +390,15 @@ class Blockchain:
         return True
 
     def addBlock(self,newBlock):
+<<<<<<< HEAD
+        start_time = time.time()
+        newBlock.mineBlock(Blockchain.difficulty)
+        Blockchain.blockchain.append(newBlock)
+        return (time.time()-start_time)
+=======
         newBlock.mineBlock(Blockchain.difficulty)
         Blockchain.blockchain.append(newBlock)
 
 #print(ECC.generate(curve='P-256'))
 Blockchain();
+>>>>>>> 6f9629b202a9b3f08576313c6165cd8e930ece96
