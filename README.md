@@ -1,5 +1,7 @@
-Blockchain() :
-	1. has a array of blocks
+Backend Functionalities::\
+\
+Blockchain() :\
+	1. has a array of blocks  
 	2. has a dictionary of all the unspent transactions
 	3. creates a genisis block
 
@@ -43,3 +45,16 @@ Blockchain.addBlock(block) : adds block to the blockchain array
 	2. adds it to the blockchain 
 
 isChainValid() : checks if the blockchain is valid
+
+
+Frontend Functionalities
+Routes:
+    1) / : home
+    2) /blockchain : displays complete blockchain
+    3) /blockchain/<index>: displays all tranactions for block number <index>
+    4) /wallet : shows balance and form to make any tranactions
+    5) /mine : to mine new block to add current tranactions to blockchain
+    6) /isValid : to check if current chain is valid or not 
+    7) /connect : to connect with peers
+    8) /mykeys : to generate publicKey and privateKey and save them in file
+    9) /about : shows info about team
